@@ -5,7 +5,7 @@ using UnityEngine;
 public class Ingredient : MonoBehaviour
 {
 
-    public string Name;
+    public string ingredientName;
 
     // Start is called before the first frame update
     void Start()

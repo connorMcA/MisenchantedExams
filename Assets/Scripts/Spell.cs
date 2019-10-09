@@ -5,10 +5,10 @@ using UnityEngine;
 public class Spell : MonoBehaviour
 {
 
-    public List<Ingredient> RequiredIngredients;
-    public string Name;
-    public Material Symbol;
-    private int CurrentIngredientIdx;
+    public List<Ingredient> requiredIngredients;
+    public string spellName;
+    public Material symbol;
+    private int currentIngredientIdx;
 
     // Start is called before the first frame update
     void Start()
@@ -25,11 +25,11 @@ public class Spell : MonoBehaviour
 
     // verifies whether the ingredient is the correct ingredient to be added at this point
     // if true, it will also move on to the next expected ingredient
-    bool VerifyIngredient(Ingredient ingredient)
+    public bool VerifyIngredient(Ingredient ingredient)
     {
-        if(ingredient.Name.Equals(RequiredIngredients[CurrentIngredientIdx].Name))
+        if(ingredient.ingredientName.Equals(requiredIngredients[currentIngredientIdx].ingredientName))
         {
-            CurrentIngredientIdx++;
+            currentIngredientIdx++;
             return true;
         }
         return false;
