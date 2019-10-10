@@ -54,7 +54,7 @@ public class Cauldron : MonoBehaviour
         // incorrect ingredient. If all the candles are then blown out, this 
         // method is responsible for starting the end of game process.
 
-        for (int i; i < candles.Count; i++) 
+        for (int i = 0; i < candles.Count; i++) 
         {
             if (candles[i].isActive())
             {
