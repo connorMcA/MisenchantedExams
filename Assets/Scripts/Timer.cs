@@ -1,31 +1,43 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
+/// <summary>
+/// Author: Julianna Apicella
+/// This script facilitates the timer.
+/// This should be attached to a 3D Text object in the scene.
+/// </summary>
 public class Timer : MonoBehaviour
 {
-    float time;
+    //Time in seconds.
+    double remainingTime;
+    //Reference to the TextMesh component on a 3D Text Object.
+    TextMesh textDisplay;
+
     // Start is called before the first frame update
     void Start()
     {
-        time = 600.0f;
+        //Set timer to 10 minutes (for now).
+        remainingTime = 600.0f;
+
+        textDisplay = gameObject.GetComponent<TextMesh>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        time -= Time.deltaTime;
+        //Subtract time passed from total time.
+        remainingTime -= Time.deltaTime;
 
-        if (time <= 0)
+        //Move to "Game Over" state.
+        if (remainingTime <= 0)
         {
             //whatever happens here...
         }
 
-        Debug.Log(time);
-    }
-
-    private void OnGUI()
-    {
-        //how to display timer
+        //Display timer.
+        //Debug.Log(remainingTime);
+        textDisplay.text = TimeSpan.FromSeconds(remainingTime).ToString(format: @"mm\:ss");
     }
 }
