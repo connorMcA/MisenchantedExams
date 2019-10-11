@@ -8,6 +8,7 @@ public class Cauldron : MonoBehaviour
     public ParticleSystem liquidEffect;
     public Spell spell;
     bool isInValidState = false;
+    public List<Candle> candles;
 
     // Start is called before the first frame update
     void Start()
@@ -53,5 +54,23 @@ public class Cauldron : MonoBehaviour
         // incorrect ingredient. If all the candles are then blown out, this 
         // method is responsible for starting the end of game process.
 
+        for (int i = 0; i < candles.Count; i++) 
+        {
+            if (candles[i].isActive())
+            {
+                candles[i].BlowOut();
+                // if its the last candle, games over
+                if (i == candles.Count - 1)
+                {
+                    GameOver();
+                }
+                return;
+            }
+        }
+    }
+
+    public void GameOver()
+    {
+        // shut it down
     }
 }
