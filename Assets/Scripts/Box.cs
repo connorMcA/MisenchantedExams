@@ -10,7 +10,7 @@ using UnityEngine;
 public class Box : MonoBehaviour
 {
     // list of ingredients in the box
-    public List<Ingrediant> ingrediants;
+    public List<Ingredient> ingredients;
     // name will be the 
     public string name;
 
@@ -39,9 +39,9 @@ public class Box : MonoBehaviour
     void OnGUI()
     {
 
-        if (inOpen) {
-            for (int i = 0; i < ingrediants.Count; i++) {
-                GUI.Box(new Rect(Screen.width - 50 - i * 10, Screen, height - 50 - i*10, Screen.width, Screen.Height), ingrediants[i]);
+        if (isOpen) {
+            for (int i = 0; i < ingredients.Count; i++) {
+                GUI.Box(new Rect(Screen.width - 50 - i * 10, Screen.height - 50 - i*10, Screen.width, Screen.height), ingredients[i].name);
             }
         }
     }
