@@ -8,7 +8,7 @@ public class Spell : MonoBehaviour
     public List<Ingredient> requiredIngredients;
     public string spellName;
     public Material symbol;
-    private int currentIngredientIdx;
+    public int currentIngredientIdx;
 
     // Start is called before the first frame update
     void Start()

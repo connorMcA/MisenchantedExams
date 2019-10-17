@@ -17,6 +17,7 @@ public class Timer : MonoBehaviour
 
     //Get reference to cauldron to access GameOver() method.
     public Cauldron script;
+    public double RemainingTime { get => remainingTime; set => remainingTime = value; }
 
     // Start is called before the first frame update
     void Start()

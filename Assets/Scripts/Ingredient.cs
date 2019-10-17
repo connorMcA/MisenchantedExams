@@ -6,6 +6,8 @@ public class Ingredient : MonoBehaviour
 {
 
     public string ingredientName;
+    public Box box;
+    public Color vialColor;
 
     // Start is called before the first frame update
     void Start()
