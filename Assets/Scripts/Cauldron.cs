@@ -7,7 +7,7 @@ using static Interaction;
 public class Cauldron : MonoBehaviour
 {
     public Color liquidColor = CLEAR;
-    public ParticleSystem liquidEffect;
+    public ParticleSystem liquidEffect = null;
     public Spell spell;
     public List<Candle> candles;
     public GameObject liquidObject;
@@ -24,21 +24,29 @@ public class Cauldron : MonoBehaviour
     public static Color CLEAR = Color.clear;
     public List<Color> colors = new List<Color> { BLUE, RED, WHITE, CLEAR };
 
-    public Box[,] boxes = new Box[3,3];
-    public int boxCount;
+    Box[,] boxes = new Box[3,3];
+    public List<Box> publicBoxes;
 
-    public static ParticleSystem BUBBLING;
-    public static ParticleSystem STEAMING;
-    public static ParticleSystem SPARKLING;
-    public List<ParticleSystem> effects = new List<ParticleSystem> { SPARKLING, BUBBLING, STEAMING, null };
+    public ParticleSystem BUBBLING;
+    public ParticleSystem STEAMING;
+    public ParticleSystem SPARKLING;
+    public List<ParticleSystem> effects;
 
     int numLives = 3;
 
     // Start is called before the first frame update
     void Start()
     {
+        BUBBLING = GameObject.Find("Particle System").GetComponent<ParticleSystem>();
+        STEAMING = BUBBLING;
+        SPARKLING = BUBBLING;
+        effects = new List<ParticleSystem> { SPARKLING, BUBBLING, STEAMING, null };
         numLives = 3;
         liquidObject.GetComponent<Renderer>().material.color = liquidColor;
+        foreach (Box box in publicBoxes)
+        {
+            boxes[box.row, box.col] = box;
+        }
 
     }
 
@@ -223,7 +231,7 @@ public class Cauldron : MonoBehaviour
             {
                 ClearCauldron();
             }
-            else if (interaction.Action == InteractionType.HEAT && boxCount % 2 == 1)
+            else if (interaction.Action == InteractionType.HEAT && publicBoxes.Count % 2 == 1)
             {
                 ClearCauldron();
             }
@@ -258,7 +266,41 @@ public class Cauldron : MonoBehaviour
         }
         else
         {
-
+            if (interaction.Action == InteractionType.COOL)
+            {
+                int count = 0;
+                for (int i = 0; i < 3; i++)
+                {
+                    if (boxes[2,i] != null)
+                    {
+                        count++;
+                    }
+                }
+                if (lastIngredient != null && lastIngredient.box.row == 1 && count == 2)
+                {
+                    ClearCauldron();
+                }
+                else
+                {
+                    RandomState();
+                }
+            }
+            else if (interaction.Action == InteractionType.TAP && correctIngredients.Count > 0 && correctIngredients[0].vialColor == WHITE)
+            {
+                ClearCauldron();
+            }
+            else if (interaction.Action == InteractionType.STIR && spell.requiredIngredients.Count % 2 == 1)
+            {
+                ClearCauldron();
+            }
+            else if (interaction.Action == InteractionType.HEAT)
+            {
+                ClearCauldron();
+            }
+            else
+            {
+                RandomState();
+            }
         }
 
     }
@@ -292,7 +334,8 @@ public class Cauldron : MonoBehaviour
             for(int i = 2; i >=0; i--)
             {
                 if (found) break;
-                for(int j = 2; j >=0; j--){
+                for(int j = 2; j >=0; j--)
+                {
                     if(boxes[i, j] != null && ids.Contains(boxes[i, j].symbolId))
                     {
                         if (actions[(int)Math.Floor((double)ids.IndexOf(boxes[i,j].symbolId) / 4.0)] == interaction.Action)

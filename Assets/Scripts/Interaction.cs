@@ -25,4 +25,15 @@ public class Interaction : MonoBehaviour
     {
         
     }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        Cauldron cauldron = collider.gameObject.GetComponent<Cauldron>();
+        if (cauldron != null)
+        {
+            cauldron.AddInteraction(this);
+            GetComponent<Draggable>().ResetPosition();
+        }
+
+    }
 }

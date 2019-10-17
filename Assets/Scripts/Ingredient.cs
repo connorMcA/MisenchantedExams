@@ -28,6 +28,7 @@ public class Ingredient : MonoBehaviour
         if (cauldron != null)
         {
             cauldron.AddIngredient(this);
+            GetComponent<Draggable>().ResetPosition();
         }
         
     }
