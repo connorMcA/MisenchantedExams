@@ -16,6 +16,8 @@ public class Box : MonoBehaviour
     public int symbolId;
     public int row;
     public int col;
+    public Box openBox;
+    public bool isOpenBox;
 
     // each box object has a property saying whether the box is open or not - either a single box is open, in which cases all other boxes are set to closed, or
     bool isOpen = false;
@@ -38,19 +40,17 @@ public class Box : MonoBehaviour
 
     }
 
-
-    void OnGUI()
+    void OnMouseDown()
     {
-
-        if (isOpen) {
-            for (int i = 0; i < ingredients.Count; i++) {
-                GUI.Box(new Rect(Screen.width - 50 - i * 10, Screen.height - 50 - i*10, Screen.width, Screen.height), ingredients[i].name);
+        if (!isOpenBox)
+        {
+            
+            for (int i = 0; i < ingredients.Count; i++)
+            {
+                ingredients[i].transform.position = openBox.ingredients[i].transform.position;
+                openBox.ingredients[i].transform.position = openBox.ingredients[i].box.transform.position;
+                openBox.ingredients[i] = ingredients[i];
             }
         }
-    }
-
-    void onClick()
-    {
-
     }
 }
