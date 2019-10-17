@@ -21,4 +21,15 @@ public class Ingredient : MonoBehaviour
     {
         
     }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        Cauldron cauldron = collider.gameObject.GetComponent<Cauldron>();
+        if (cauldron != null)
+        {
+            cauldron.AddIngredient(this);
+        }
+        
+    }
+
 }
