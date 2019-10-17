@@ -256,26 +256,26 @@ public class Cauldron : MonoBehaviour
         if(liquidEffect == BUBBLING)
         {
             List<int> ids = new List<int>{12, 11, 7, 10};
-            InteractionType[] actions = {HEAT, TAP, COOL, STIR};
+            InteractionType[] actions = { InteractionType.HEAT, InteractionType.TAP, InteractionType.COOL, InteractionType.STIR };
             RedHelper(ids, actions, 2, interaction);
         }
         else if (liquidEffect == STEAMING)
         {
             List<int> ids = new List<int>{13, 14, 5, 0};
-            InteractionType[] actions = {COOL, STIR, TAP, HEAT};
+            InteractionType[] actions = { InteractionType.COOL, InteractionType.STIR, InteractionType.TAP, InteractionType.HEAT };
             RedHelper(ids, actions, 1, interaction);
         }
         else if (liquidEffect == SPARKLING)
         {
-            iList<int> ids = new List<int>{1, 3, 8, 4};
-            InteractionType[] actions = {TAP, HEAT, STIR, COOL};
+            List<int> ids = new List<int>{1, 3, 8, 4};
+            InteractionType[] actions = { InteractionType.TAP, InteractionType.HEAT, InteractionType.STIR, InteractionType.COOL };
             RedHelper(ids, actions, 0, interaction);
         }
         else
         {
             // bottom right, vertical then left
-            List<int> ids = {0, 1, 3, 4, 5, 2, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
-            InteractionType[] actions = {STIR, TAP, COOL, HEAT};
+            List<int> ids = new List<int> { 0, 1, 3, 4, 5, 2, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+            InteractionType[] actions = { InteractionType.STIR, InteractionType.TAP, InteractionType.COOL, InteractionType.HEAT };
             bool found = false;
             for(int i = 2; i >=0; i--)
             {
@@ -283,7 +283,7 @@ public class Cauldron : MonoBehaviour
                 for(int j = 2; j >=0; j--){
                     if(boxes[i, j] != null && ids.Contains(boxes[i, j].symbolId))
                     {
-                        if (actions[Math.Floor((double)ids.IndexOf(boxes) / 4)] == interaction.Action)
+                        if (actions[(int)Math.Floor((double)ids.IndexOf(boxes[i,j].symbolId) / 4.0)] == interaction.Action)
                         {
                             ClearCauldron();
                         }
@@ -306,7 +306,7 @@ public class Cauldron : MonoBehaviour
         {
             if(boxes[rowId, i] != null && ids.Contains(boxes[rowId, i].symbolId))
             {
-                if (actions[ids.IndexOf(boxes)] == interaction.Action)
+                if (actions[ids.IndexOf(boxes[rowId, i].symbolId)] == interaction.Action)
                 {
                     ClearCauldron();
                 }
