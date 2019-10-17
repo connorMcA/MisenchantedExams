@@ -149,7 +149,7 @@ public class Cauldron : MonoBehaviour
             {
                 ClearCauldron();
             }
-            else if (interaction.Action == InteractionType.COOL && lastIngredient.name.ToLower().Contains("q"))
+            else if (interaction.Action == InteractionType.COOL && lastIngredient.name.ToLower().Contains("w"))
             {
                 ClearCauldron();
             }
