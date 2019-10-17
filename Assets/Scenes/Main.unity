@@ -120,6 +120,28 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &100267935 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: b541e92260c4fff47a7f77121e3c4d05,
+    type: 3}
+  m_PrefabInstance: {fileID: 1116080677}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &100267936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100267935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bde0f0edf772e00429ab72dc08d30726, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  liquidColor: {r: 0, g: 0, b: 0, a: 0}
+  liquidEffect: {fileID: 0}
+  spell: {fileID: 0}
+  candles: []
 --- !u!1001 &453616079
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5228,6 +5250,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08ee5f69cd6f8464985f3295afddd182, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  script: {fileID: 100267936}
 --- !u!102 &1871685883
 TextMesh:
   serializedVersion: 3

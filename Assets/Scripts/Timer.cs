@@ -15,6 +15,9 @@ public class Timer : MonoBehaviour
     //Reference to the TextMesh component on a 3D Text Object.
     TextMesh textDisplay;
 
+    //Get reference to cauldron to access GameOver() method.
+    public Cauldron script;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,7 +36,7 @@ public class Timer : MonoBehaviour
         //Move to "Game Over" state.
         if (remainingTime <= 0)
         {
-            //whatever happens here...
+            script.GameOver();
         }
 
         //Display timer.
