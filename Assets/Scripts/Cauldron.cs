@@ -6,12 +6,13 @@ using static Interaction;
 
 public class Cauldron : MonoBehaviour
 {
-    public Color liquidColor;
+    public Color liquidColor = CLEAR;
     public ParticleSystem liquidEffect;
     public Spell spell;
     public List<Candle> candles;
+    public GameObject liquidObject;
 
-    bool isInValidState = false;
+    bool isInValidState = true;
     Ingredient lastIngredient;
     List<Ingredient> correctIngredients = new List<Ingredient>();
 
@@ -37,6 +38,8 @@ public class Cauldron : MonoBehaviour
     void Start()
     {
         numLives = 3;
+        liquidObject.GetComponent<Renderer>().material.color = liquidColor;
+
     }
 
     // Update is called once per frame
@@ -66,9 +69,11 @@ public class Cauldron : MonoBehaviour
 
     private void RandomState()
     {
-        liquidColor = colors[UnityEngine.Random.Range(0, colors.Count)];
-        int max = liquidColor == CLEAR ? effects.Count - 1 : effects.Count;
-        liquidEffect = effects[UnityEngine.Random.Range(0, max)];
+        liquidColor = colors[UnityEngine.Random.Range(0, colors.Count - 1)];
+        liquidObject.GetComponent<Renderer>().material.color = liquidColor;
+        //int max = liquidColor == CLEAR ? effects.Count - 1 : effects.Count;
+        //liquidEffect = effects[UnityEngine.Random.Range(0, max)];
+        liquidEffect = null;
         isInValidState = false;
     }
 
@@ -387,6 +392,8 @@ public class Cauldron : MonoBehaviour
         liquidEffect = null;
         liquidColor = CLEAR;
         isInValidState = true;
+        liquidObject.GetComponent<Renderer>().material.color = liquidColor;
+
     }
 
     void BlowOutCandle()

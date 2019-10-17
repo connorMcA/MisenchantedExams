@@ -47,7 +47,9 @@ public class Box : MonoBehaviour
             
             for (int i = 0; i < ingredients.Count; i++)
             {
+                ingredients[i].GetComponent<Draggable>().enabled = true;
                 ingredients[i].transform.position = openBox.ingredients[i].transform.position;
+                openBox.ingredients[i].GetComponent<Draggable>().enabled = false;
                 openBox.ingredients[i].transform.position = openBox.ingredients[i].box.transform.position;
                 openBox.ingredients[i] = ingredients[i];
             }
