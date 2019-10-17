@@ -1,14 +1,35 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Interaction;
 
 public class Cauldron : MonoBehaviour
 {
     public Color liquidColor;
     public ParticleSystem liquidEffect;
     public Spell spell;
-    bool isInValidState = false;
     public List<Candle> candles;
+
+    bool isInValidState = false;
+    Ingredient lastIngredient;
+    List<Ingredient> correctIngredients = new List<Ingredient>();
+
+    public Timer timer;
+
+    public static Color BLUE = Color.blue;
+    public static Color RED = Color.red;
+    public static Color WHITE = Color.white;
+    public static Color CLEAR = Color.clear;
+    public List<Color> colors = new List<Color> { BLUE, RED, WHITE, CLEAR };
+
+    public Box[,] boxes = new Box[3,3];
+    public int boxCount;
+
+    public static ParticleSystem BUBBLING;
+    public static ParticleSystem STEAMING;
+    public static ParticleSystem SPARKLING;
+    public List<ParticleSystem> effects = new List<ParticleSystem> { SPARKLING, BUBBLING, STEAMING, null };
 
     // Start is called before the first frame update
     void Start()
@@ -24,9 +45,11 @@ public class Cauldron : MonoBehaviour
 
     public void AddIngredient(Ingredient ingredient)
     {
+        lastIngredient = ingredient;
         if (isInValidState && spell.VerifyIngredient(ingredient))
         {
-            ChangeState();
+            correctIngredients.Add(ingredient);
+            RandomState();
         }
         else
         {
@@ -34,27 +57,338 @@ public class Cauldron : MonoBehaviour
         }
     }
 
-    public void AddInteraction(Interaction interaction)
+    private void RandomState()
     {
-        ChangeState();
+        liquidColor = colors[UnityEngine.Random.Range(0, colors.Count)];
+        int max = liquidColor == CLEAR ? effects.Count - 1 : effects.Count;
+        liquidEffect = effects[UnityEngine.Random.Range(0, max)];
+        isInValidState = false;
     }
 
-    void ChangeState()
+    public void AddInteraction(Interaction interaction)
     {
-        // change the color and effect of the cauldron based on something need
-        // to figure out how we want to do this so that it will match with the
-        // rules.
-        // Make sure to set isInValidState = true; if the state goes back to
-        // being clear.
+        if (liquidColor == WHITE)
+        {
+            ChangeFromWhite(interaction);
+        }
+        else if (liquidColor == RED)
+        {
+            ChangeFromRed(interaction);
+        }
+        else if (liquidColor == BLUE)
+        {
+            ChangeFromBlue(interaction);
+        }
+        else
+        {
+            ChangeFromClear(interaction);
+        }
+    }
+
+    private void ChangeFromClear(Interaction interaction)
+    {
+        int ingredientNum = spell.currentIngredientIdx;
+        switch (interaction.Action)
+        {
+            case InteractionType.TAP:
+                if (liquidEffect == STEAMING && (ingredientNum == 0 || ingredientNum == 2))
+                {
+                    ClearCauldron();
+                }
+                else
+                {
+                    RandomState();
+                }
+                break;
+            case InteractionType.HEAT:
+                if ((liquidEffect == SPARKLING && ingredientNum == 0) || (liquidEffect == BUBBLING && ingredientNum == 1))
+                {
+                    ClearCauldron();
+                }
+                else
+                {
+                    RandomState();
+                }
+                break;
+            case InteractionType.COOL:
+                if ((liquidEffect == SPARKLING && ingredientNum == 1) || (liquidEffect == BUBBLING && ingredientNum == 2))
+                {
+                    ClearCauldron();
+                }
+                else
+                {
+                    RandomState();
+                }
+                break;
+            case InteractionType.STIR:
+                if ((liquidEffect == BUBBLING && ingredientNum == 0) || (liquidEffect == STEAMING && ingredientNum == 1)
+                    || (liquidEffect == SPARKLING && ingredientNum == 2))
+                {
+                    ClearCauldron();
+                }
+                else
+                {
+                    RandomState();
+                }
+                break;
+            default:
+                RandomState();
+                break;
+        }
+    }
+
+    private void ChangeFromBlue(Interaction interaction)
+    {
+        if (liquidEffect == BUBBLING)
+        {
+            if ((interaction.Action == InteractionType.STIR && boxes[0, 0] != null && boxes[2, 2] != null))
+            {
+                ClearCauldron();
+            }
+            else if (interaction.Action == InteractionType.TAP && spell.requiredIngredients.Count > 3)
+            {
+                ClearCauldron();
+            }
+            else if (interaction.Action == InteractionType.COOL && lastIngredient.name.ToLower().Contains("q"))
+            {
+                ClearCauldron();
+            }
+            else if (interaction.Action == InteractionType.HEAT)
+            {
+                ClearCauldron();
+            }
+            else
+            {
+                RandomState();
+            }
+        }
+        else if (liquidEffect == STEAMING)
+        {
+            if (interaction.Action == InteractionType.HEAT)
+            {
+                int top = 0;
+                int bottom = 0;
+                for (int i = 0; i < 3; i++)
+                {
+                    if (boxes[0,i] != null)
+                    {
+                        top++;
+                    }
+                    if (boxes[2,i] != null)
+                    {
+                        bottom++;
+                    }
+                }
+                if (top == bottom)
+                {
+                    ClearCauldron();
+                }
+                else
+                {
+                    RandomState();
+                }
+            }
+            else if (interaction.Action == InteractionType.COOL && correctIngredients.Count > 0 && correctIngredients[0].box.row == 2)
+            {
+                ClearCauldron();
+            }
+            else if (interaction.Action == InteractionType.TAP && spell.requiredIngredients.Count - spell.currentIngredientIdx < 2)
+            {
+                ClearCauldron();
+            }
+            else if (interaction.Action == InteractionType.STIR)
+            {
+                ClearCauldron();
+            }
+            else
+            {
+                RandomState();
+            }
+        }
+        else if (liquidEffect == SPARKLING)
+        {
+            if (interaction.Action == InteractionType.TAP && lastIngredient.name.ToLower().Contains("hair"))
+            {
+                ClearCauldron();
+            }
+            else if (interaction.Action == InteractionType.HEAT && boxCount % 2 == 1)
+            {
+                ClearCauldron();
+            }
+            else if (interaction.Action == InteractionType.STIR && correctIngredients.Count > 0)
+            {
+                Box box = correctIngredients[0].box;
+                bool blueVial = false;
+                foreach (Ingredient ingredient in box.ingredients)
+                {
+                    if (ingredient.vialColor == Color.blue)
+                    {
+                        blueVial = true;
+                    }
+                }
+                if (blueVial)
+                {
+                    RandomState();
+                }
+                else
+                {
+                    ClearCauldron();
+                }
+            }
+            else if (interaction.Action == InteractionType.COOL)
+            {
+                ClearCauldron();
+            }
+            else
+            {
+                RandomState();
+            }
+        }
+        else
+        {
+
+        }
+
+    }
+
+    private void ChangeFromRed(Interaction interaction)
+    {
+        if(liquidEffect == BUBBLING)
+        {
+            List<int> ids = new List<int>{12, 11, 7, 10};
+            InteractionType[] actions = {HEAT, TAP, COOL, STIR};
+            RedHelper(ids, actions, 2, interaction);
+        }
+        else if (liquidEffect == STEAMING)
+        {
+            List<int> ids = new List<int>{13, 14, 5, 0};
+            InteractionType[] actions = {COOL, STIR, TAP, HEAT};
+            RedHelper(ids, actions, 1, interaction);
+        }
+        else if (liquidEffect == SPARKLING)
+        {
+            iList<int> ids = new List<int>{1, 3, 8, 4};
+            InteractionType[] actions = {TAP, HEAT, STIR, COOL};
+            RedHelper(ids, actions, 0, interaction);
+        }
+        else
+        {
+            // bottom right, vertical then left
+            List<int> ids = {0, 1, 3, 4, 5, 2, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15};
+            InteractionType[] actions = {STIR, TAP, COOL, HEAT};
+            bool found = false;
+            for(int i = 2; i >=0; i--)
+            {
+                if (found) break;
+                for(int j = 2; j >=0; j--){
+                    if(boxes[i, j] != null && ids.Contains(boxes[i, j].symbolId))
+                    {
+                        if (actions[Math.Floor((double)ids.IndexOf(boxes) / 4)] == interaction.Action)
+                        {
+                            ClearCauldron();
+                        }
+                        else
+                        {
+                            RandomState();
+                        }
+                        found = true;
+                        break;
+                    }
+                }
+            }
+
+        }
+    }
+
+    private void RedHelper(List<int> ids, InteractionType[] actions, int rowId, Interaction interaction)
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            if(boxes[rowId, i] != null && ids.Contains(boxes[rowId, i].symbolId))
+            {
+                if (actions[ids.IndexOf(boxes)] == interaction.Action)
+                {
+                    ClearCauldron();
+                }
+                else
+                {
+                    RandomState();
+                }
+                break;
+            }
+        }
+    }
+
+    private void ChangeFromWhite(Interaction interaction) {
+
+        string seconds = (Math.Truncate(timer.RemainingTime % 60 * 1000) / 1000).ToString();
+        string minutes = Math.Truncate(timer.RemainingTime / 60).ToString();
+        switch (interaction.Action)
+        {
+            case InteractionType.TAP:
+                if (liquidEffect == SPARKLING && (seconds.Contains("9") || minutes.Contains("9")))
+                {
+                    ClearCauldron();
+                }
+                else
+                {
+                    RandomState();
+                }
+                break;
+            case InteractionType.HEAT:
+                if (liquidEffect == BUBBLING && (seconds.Contains("3") || minutes.Contains("3")))
+                {
+                    ClearCauldron();
+                }
+                else
+                {
+                    RandomState();
+                }
+                break;
+            case InteractionType.COOL:
+                if(liquidEffect == STEAMING && (seconds.Contains("5") || minutes.Contains("5")))
+                {
+                    ClearCauldron();
+                }
+                else
+                {
+                    RandomState();
+                }
+                break;
+            case InteractionType.STIR:
+                if (liquidEffect == null && (seconds.Contains("2") || minutes.Contains("2")))
+                {
+                    ClearCauldron();
+                }
+                else
+                {
+                    RandomState();
+                }
+                break;
+            default:
+                RandomState();
+                break;
+        }
+    }
+
+    private void ClearCauldron()
+    {
+        if (liquidEffect != null)
+        {
+            liquidEffect.Stop();
+        }
+        liquidEffect = null;
+        liquidColor = CLEAR;
+        isInValidState = true;
     }
 
     void BlowOutCandle()
     {
-        // We need to be able to blow out a candle when a player adds the 
-        // incorrect ingredient. If all the candles are then blown out, this 
+        // We need to be able to blow out a candle when a player adds the
+        // incorrect ingredient. If all the candles are then blown out, this
         // method is responsible for starting the end of game process.
 
-        for (int i = 0; i < candles.Count; i++) 
+        for (int i = 0; i < candles.Count; i++)
         {
             if (candles[i].isActive())
             {

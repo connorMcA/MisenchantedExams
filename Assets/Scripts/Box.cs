@@ -11,10 +11,13 @@ public class Box : MonoBehaviour
 {
     // list of ingredients in the box
     public List<Ingredient> ingredients;
-    // name will be the 
+    // name will be the
     public string name;
+    public int symbolId;
+    public int row;
+    public int col;
 
-    // each box object has a property saying whether the box is open or not - either a single box is open, in which cases all other boxes are set to closed, or 
+    // each box object has a property saying whether the box is open or not - either a single box is open, in which cases all other boxes are set to closed, or
     bool isOpen = false;
 
     // seter for whether the box is open or not
@@ -26,13 +29,13 @@ public class Box : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 
 
