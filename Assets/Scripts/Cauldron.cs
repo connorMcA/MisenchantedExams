@@ -31,10 +31,12 @@ public class Cauldron : MonoBehaviour
     public static ParticleSystem SPARKLING;
     public List<ParticleSystem> effects = new List<ParticleSystem> { SPARKLING, BUBBLING, STEAMING, null };
 
+    int numLives = 3;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        numLives = 3;
     }
 
     // Update is called once per frame
@@ -53,7 +55,12 @@ public class Cauldron : MonoBehaviour
         }
         else
         {
-            BlowOutCandle();
+            //BlowOutCandle();
+            numLives--;
+            if(numLives == 0)
+            {
+                GameOver();
+            }
         }
     }
 
@@ -87,7 +94,7 @@ public class Cauldron : MonoBehaviour
 
     private void ChangeFromClear(Interaction interaction)
     {
-        int ingredientNum = spell.currentIngredientIdx;
+        int ingredientNum = spell.CurrentIngredientIdx;
         switch (interaction.Action)
         {
             case InteractionType.TAP:
@@ -192,7 +199,7 @@ public class Cauldron : MonoBehaviour
             {
                 ClearCauldron();
             }
-            else if (interaction.Action == InteractionType.TAP && spell.requiredIngredients.Count - spell.currentIngredientIdx < 2)
+            else if (interaction.Action == InteractionType.TAP && spell.requiredIngredients.Count - spell.CurrentIngredientIdx < 2)
             {
                 ClearCauldron();
             }
@@ -406,5 +413,10 @@ public class Cauldron : MonoBehaviour
     public void GameOver()
     {
         // shut it down
+    }
+
+    void OnGUI()
+    {
+        GUI.Box(new Rect(0, Screen.height - 100, 100, 100), numLives.ToString());
     }
 }

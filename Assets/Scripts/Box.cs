@@ -48,4 +48,9 @@ public class Box : MonoBehaviour
             }
         }
     }
+
+    void onClick()
+    {
+
+    }
 }

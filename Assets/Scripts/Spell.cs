@@ -8,7 +8,9 @@ public class Spell : MonoBehaviour
     public List<Ingredient> requiredIngredients;
     public string spellName;
     public Material symbol;
-    public int currentIngredientIdx;
+    int currentIngredientIdx;
+
+    public int CurrentIngredientIdx { get => currentIngredientIdx; set => currentIngredientIdx = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -27,9 +29,9 @@ public class Spell : MonoBehaviour
     // if true, it will also move on to the next expected ingredient
     public bool VerifyIngredient(Ingredient ingredient)
     {
-        if(ingredient.ingredientName.Equals(requiredIngredients[currentIngredientIdx].ingredientName))
+        if(ingredient.ingredientName.Equals(requiredIngredients[CurrentIngredientIdx].ingredientName))
         {
-            currentIngredientIdx++;
+            CurrentIngredientIdx++;
             return true;
         }
         return false;
@@ -37,6 +39,6 @@ public class Spell : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.Box(new Rect(0, 0, 100, 100), spellName);
+        GUI.Box(new Rect(0, 0, 200, 200), spellName);
     }
 }
