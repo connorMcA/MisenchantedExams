@@ -15,6 +15,8 @@ public class Timer : MonoBehaviour
     //Reference to the TextMesh component on a 3D Text Object.
     TextMesh textDisplay;
 
+    public double RemainingTime { get => remainingTime; set => remainingTime = value; }
+
     // Start is called before the first frame update
     void Start()
     {

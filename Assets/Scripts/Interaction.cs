@@ -4,8 +4,16 @@ using UnityEngine;
 
 public class Interaction : MonoBehaviour
 {
-    public string interactionName;
+    public InteractionType Action;
 
+
+    public enum InteractionType
+    {
+        STIR,
+        HEAT,
+        COOL,
+        TAP
+    }
     // Start is called before the first frame update
     void Start()
     {
