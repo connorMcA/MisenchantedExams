@@ -949,7 +949,7 @@ MonoBehaviour:
   - {fileID: 689932497}
   - {fileID: 699604302}
   - {fileID: 1364238397}
-  spellName: Immortal Transformation
+  spellName: Transporting Object
   symbol: {fileID: 0}
 --- !u!4 &596755551
 Transform:
