@@ -1213,7 +1213,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: raindrops
   box: {fileID: 2084414803}
-  vialColor: {r: 0, g: 0, b: 1, a: 0}
+  vialColor: {r: 1, g: 1, b: 1, a: 0}
   vialShape: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &699237142
 BoxCollider:
@@ -1335,7 +1335,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: red wine
   box: {fileID: 2084414803}
-  vialColor: {r: 1, g: 1, b: 1, a: 0}
+  vialColor: {r: 1, g: 0, b: 0, a: 0}
   vialShape: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &699604303
 BoxCollider:
@@ -1394,7 +1394,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 699604301}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &699604306
 Transform:
   m_ObjectHideFlags: 0
@@ -2077,7 +2077,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: seaweed
   box: {fileID: 1707452582}
-  vialColor: {r: 1, g: 1, b: 1, a: 0}
+  vialColor: {r: 0, g: 0, b: 1, a: 0}
   vialShape: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &1216912817
 BoxCollider:
@@ -2199,7 +2199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ingredientName: blade of grass
   box: {fileID: 1707452582}
-  vialColor: {r: 1, g: 0, b: 0, a: 0}
+  vialColor: {r: 1, g: 1, b: 1, a: 0}
   vialShape: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!65 &1364238398
 BoxCollider:

@@ -42,7 +42,7 @@ public class Box : MonoBehaviour
 
     void OnMouseDown()
     {
-        if (!isOpenBox)
+        if (!isOpenBox && ingredients[0] != openBox.ingredients[0])
         {
             
             for (int i = 0; i < ingredients.Count; i++)
