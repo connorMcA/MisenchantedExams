@@ -32,6 +32,8 @@ public class Cauldron : MonoBehaviour
     public ParticleSystem SPARKLING;
     public List<ParticleSystem> effects;
 
+    public int fontSize = 20;
+
     int numLives = 3;
 
     // Canvas object for Game Over screen
@@ -471,6 +473,9 @@ public class Cauldron : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.Box(new Rect(0, Screen.height - 100, 100, 100), numLives.ToString());
+        GUIStyle guiStyle = new GUIStyle();
+        guiStyle.fontSize = fontSize;
+        guiStyle.normal.textColor = Color.white;
+        GUI.Box(new Rect(10, Screen.height - 50, 100, 100), "Remaining Lives: " + numLives.ToString(), guiStyle);
     }
 }

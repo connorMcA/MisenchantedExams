@@ -8,6 +8,7 @@ public class Spell : MonoBehaviour
     public List<Ingredient> requiredIngredients;
     public string spellName;
     public Material symbol;
+    public int fontSize = 30;
     int currentIngredientIdx;
 
     public int CurrentIngredientIdx { get => currentIngredientIdx; set => currentIngredientIdx = value; }
@@ -15,7 +16,7 @@ public class Spell : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -39,6 +40,9 @@ public class Spell : MonoBehaviour
 
     void OnGUI()
     {
-        GUI.Box(new Rect(0, 0, 200, 200), spellName);
+        GUIStyle guiStyle = new GUIStyle();
+        guiStyle.fontSize = fontSize;
+        guiStyle.normal.textColor = Color.white;
+        GUI.Box(new Rect(10, 10, 210, 210), spellName, guiStyle);
     }
 }
