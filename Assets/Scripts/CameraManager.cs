@@ -38,7 +38,8 @@ public class CameraManager : MonoBehaviour
         gamePosition = new Vector3(0, -.5f, -12.25f);
         gameRotation = Quaternion.Euler(13.425f, 0, 0);
 
-        TransitionTo("TitleScreen");
+        transform.position = titleScreenPosition;
+        transform.rotation = titleScreenRotation;
 
         startTime = Time.time;
     }
@@ -46,7 +47,12 @@ public class CameraManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        float percentComplete = (Time.time - startTime) / totalTime;
+        if (startPosition == targetPosition)
+        {
+            return;
+        }
+
+        float percentComplete = (Time.time - startTime) / totalTime + 0.01f ;
 
         if( percentComplete <= 1.0f)
         {

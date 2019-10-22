@@ -5,15 +5,12 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
 
-    public GameObject levelObjects;
     public GameObject titleScreen;
     public GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
     {
-        levelObjects = GameObject.Find("LevelObjects");
-        levelObjects.SetActive(false);
         titleScreen = GameObject.Find("TitleScreen");
         gameManager = GetComponent<GameManager>();
     }
@@ -27,7 +24,6 @@ public class LevelManager : MonoBehaviour
     public void StartLevel()
     {
         titleScreen.SetActive(false);
-        levelObjects.SetActive(true);
         gameManager.StartGame();
 
     }

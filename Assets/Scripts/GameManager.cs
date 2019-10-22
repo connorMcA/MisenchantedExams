@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     Cauldron cauldron;
     Spell spell;
     GameObject pauseMenu;
+    GameObject levelObjects;
+
 
     // Start is called before the first frame update
     void Start()
@@ -23,6 +25,9 @@ public class GameManager : MonoBehaviour
 
         pauseMenu = GameObject.Find("PauseMenu");
         pauseMenu.SetActive(false);
+
+        levelObjects = GameObject.Find("LevelObjects");
+        levelObjects.SetActive(false);
     }
 
     // Update is called once per frame
@@ -40,6 +45,8 @@ public class GameManager : MonoBehaviour
         cauldron.enabled = true;
         timer.enabled = true;
         timer.RestartTimer();
+        levelObjects.SetActive(true);
+
     }
 
     public void TogglePauseMode()
