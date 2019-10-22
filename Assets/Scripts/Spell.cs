@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Spell : MonoBehaviour
 {
@@ -13,10 +14,15 @@ public class Spell : MonoBehaviour
 
     public int CurrentIngredientIdx { get => currentIngredientIdx; set => currentIngredientIdx = value; }
 
+    // Canvas object for victory screen
+    public GameObject victoryScreen;
+    public GameObject victoryScreenText;
+    Text title;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        title = victoryScreenText.GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -24,6 +30,10 @@ public class Spell : MonoBehaviour
     {
         // display ingredients on spell board
         // cross off any that are already done
+        if (CurrentIngredientIdx == requiredIngredients.Count) {
+            title.text = "You Won!";
+            victoryScreen.SetActive(true);
+        }
     }
 
     // verifies whether the ingredient is the correct ingredient to be added at this point

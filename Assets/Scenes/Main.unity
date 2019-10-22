@@ -1672,6 +1672,8 @@ MonoBehaviour:
   spellName: Transporting Object
   symbol: {fileID: 0}
   fontSize: 30
+  victoryScreen: {fileID: 1512227500}
+  victoryScreenText: {fileID: 1117907836}
 --- !u!4 &596755551
 Transform:
   m_ObjectHideFlags: 0

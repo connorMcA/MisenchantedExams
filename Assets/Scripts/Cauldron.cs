@@ -37,7 +37,6 @@ public class Cauldron : MonoBehaviour
     int numLives = 3;
 
     // Canvas object for Game Over screen
-
     public GameObject gameOverScreen;
 
     // Start is called before the first frame update
