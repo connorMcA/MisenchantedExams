@@ -12,6 +12,9 @@ public class Timer : MonoBehaviour
 {
     //Time in seconds.
     double remainingTime;
+    //Whether or not timer has hit zero.
+    bool timeHasRunOut;
+
     //Reference to the TextMesh component on a 3D Text Object.
     TextMesh textDisplay;
 
@@ -24,6 +27,7 @@ public class Timer : MonoBehaviour
     {
         //Set timer to 10 minutes (for now).
         remainingTime = 600.0f;
+        timeHasRunOut = false;
 
         textDisplay = gameObject.GetComponent<TextMesh>();
     }
@@ -31,17 +35,28 @@ public class Timer : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Subtract time passed from total time.
-        remainingTime -= Time.deltaTime;
-
-        //Move to "Game Over" state.
-        if (remainingTime <= 0)
+        if (!timeHasRunOut)
         {
-            script.GameOver();
-        }
+            //Subtract time passed from total time.
+            remainingTime -= Time.deltaTime;
 
-        //Display timer.
-        //Debug.Log(remainingTime);
-        textDisplay.text = TimeSpan.FromSeconds(remainingTime).ToString(format: @"mm\:ss");
+            //Move to "Game Over" state.
+            if (remainingTime <= 0)
+            {
+                timeHasRunOut = true;
+                script.GameOver();
+            }
+
+            //Display timer.
+            //Debug.Log(remainingTime);
+            textDisplay.text = TimeSpan.FromSeconds(remainingTime).ToString(format: @"mm\:ss");
+        }
+    }
+
+    public void RestartTimer()
+    {
+        //Reset timer.
+        remainingTime = 600.0f;
+        timeHasRunOut = false;
     }
 }

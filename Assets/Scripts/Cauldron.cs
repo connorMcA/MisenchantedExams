@@ -471,6 +471,11 @@ public class Cauldron : MonoBehaviour
         gameOverScreen.SetActive(true);
     }
 
+    public void ResetCauldron() {
+        numLives = 3;
+        ClearCauldron();
+    }
+
     void OnGUI()
     {
         GUIStyle guiStyle = new GUIStyle();
