@@ -39,7 +39,7 @@ public class GameManager : MonoBehaviour
         spell.enabled = true;
         cauldron.enabled = true;
         timer.enabled = true;
-        timer.ResetTimer();
+        timer.RestartTimer();
     }
 
     public void TogglePauseMode()
