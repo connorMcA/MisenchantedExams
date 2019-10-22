@@ -10,6 +10,8 @@ using UnityEngine.UI;
 /// </summary>
 public class Timer : MonoBehaviour
 {
+    double MAX_TIME = 600.0f;
+
     //Time in seconds.
     double remainingTime;
     //Whether or not timer has hit zero.
@@ -26,8 +28,8 @@ public class Timer : MonoBehaviour
     void Start()
     {
         //Set timer to 10 minutes (for now).
-        remainingTime = 600.0f;
         timeHasRunOut = false;
+        remainingTime = MAX_TIME;
 
         textDisplay = gameObject.GetComponent<TextMesh>();
     }
@@ -56,7 +58,7 @@ public class Timer : MonoBehaviour
     public void RestartTimer()
     {
         //Reset timer.
-        remainingTime = 600.0f;
+        remainingTime = MAX_TIME;
         timeHasRunOut = false;
     }
 }

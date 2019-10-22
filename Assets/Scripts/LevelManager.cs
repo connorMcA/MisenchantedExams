@@ -7,7 +7,7 @@ public class LevelManager : MonoBehaviour
 
     public GameObject levelObjects;
     public GameObject titleScreen;
-    public GameObject cauldron;
+    public GameManager gameManager;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,7 @@ public class LevelManager : MonoBehaviour
         levelObjects = GameObject.Find("LevelObjects");
         levelObjects.SetActive(false);
         titleScreen = GameObject.Find("TitleScreen");
-        cauldron = GameObject.Find("Cauldron");
+        gameManager = GetComponent<GameManager>();
     }
 
     // Update is called once per frame
@@ -28,8 +28,8 @@ public class LevelManager : MonoBehaviour
     {
         titleScreen.SetActive(false);
         levelObjects.SetActive(true);
-        GetComponent<Spell>().enabled = true;
-        cauldron.GetComponent<Cauldron>().enabled = true;
+        gameManager.StartGame();
+
     }
 
     public void ExitGame()
