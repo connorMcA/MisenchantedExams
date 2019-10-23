@@ -412,7 +412,7 @@ GameObject:
   - component: {fileID: 141085630}
   - component: {fileID: 141085629}
   m_Layer: 5
-  m_Name: Button (2)
+  m_Name: RestartButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -492,30 +492,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 100267936}
-        m_MethodName: ResetCauldron
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1871685882}
-        m_MethodName: RestartTimer
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 596755552}
-        m_MethodName: StartLevel
+      - m_Target: {fileID: 596755553}
+        m_MethodName: StartGame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -577,7 +555,7 @@ GameObject:
   - component: {fileID: 149835498}
   - component: {fileID: 149835497}
   m_Layer: 5
-  m_Name: Button (1)
+  m_Name: ExitButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -920,6 +898,7 @@ MonoBehaviour:
   col: 0
   openBox: {fileID: 0}
   isOpenBox: 0
+  openBoxIngredients: []
 --- !u!65 &273434221
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2208,7 +2187,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: -4.3}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &738499632
@@ -2249,11 +2228,21 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 738499633}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls: [{m_Target: {fileID: 596755552}, m_MethodName: ResetMainMenu, m_Mode: 1,
+          m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
+              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
+            m_BoolArgument: 0}, m_CallState: 2}, {m_Target: {fileID: 1001292352},
+          m_MethodName: TransitionTo, m_Mode: 5, m_Arguments: {m_ObjectArgument: {
+              fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object, UnityEngine',
+            m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: TitleScreen, m_BoolArgument: 0},
+          m_CallState: 2}, {m_Target: {fileID: 1132703645}, m_MethodName: SetActive,
+          m_Mode: 6, m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
+              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
+            m_BoolArgument: 0}, m_CallState: 2}]
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &738499633
@@ -2536,6 +2525,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3941463167949770349, guid: 817879699b7177840a3b1c150a047b19,
         type: 3}
+      propertyPath: openBoxIngredients.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3941463167949770349, guid: 817879699b7177840a3b1c150a047b19,
+        type: 3}
       propertyPath: isOpenBox
       value: 1
       objectReference: {fileID: 0}
@@ -2548,12 +2542,27 @@ PrefabInstance:
         type: 3}
       propertyPath: ingredients.Array.data[1]
       value: 
-      objectReference: {fileID: 2088936695}
+      objectReference: {fileID: 1172301516}
     - target: {fileID: 3941463167949770349, guid: 817879699b7177840a3b1c150a047b19,
         type: 3}
       propertyPath: ingredients.Array.data[2]
       value: 
+      objectReference: {fileID: 2088936695}
+    - target: {fileID: 3941463167949770349, guid: 817879699b7177840a3b1c150a047b19,
+        type: 3}
+      propertyPath: openBoxIngredients.Array.data[0]
+      value: 
+      objectReference: {fileID: 1530521227}
+    - target: {fileID: 3941463167949770349, guid: 817879699b7177840a3b1c150a047b19,
+        type: 3}
+      propertyPath: openBoxIngredients.Array.data[1]
+      value: 
       objectReference: {fileID: 1172301516}
+    - target: {fileID: 3941463167949770349, guid: 817879699b7177840a3b1c150a047b19,
+        type: 3}
+      propertyPath: openBoxIngredients.Array.data[2]
+      value: 
+      objectReference: {fileID: 2088936695}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 817879699b7177840a3b1c150a047b19, type: 3}
 --- !u!114 &809179792 stripped
@@ -3012,7 +3021,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 138.31995}
+  m_AnchoredPosition: {x: 0, y: 56.66}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1009521844
@@ -3053,14 +3062,25 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 0
+  m_Interactable: 1
   m_TargetGraphic: {fileID: 1009521845}
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 596755553}
-        m_MethodName: TogglePauseMode
+        m_MethodName: StartGame
         m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+      - m_Target: {fileID: 1132703645}
+        m_MethodName: SetActive
+        m_Mode: 6
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -3336,7 +3356,7 @@ GameObject:
   - component: {fileID: 1117907839}
   - component: {fileID: 1117907838}
   m_Layer: 5
-  m_Name: Text
+  m_Name: VictoryScreenText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3481,7 +3501,7 @@ Transform:
   m_LocalScale: {x: -0.02212098, y: -0.02212098, z: -0.02212098}
   m_Children: []
   m_Father: {fileID: 809179793}
-  m_RootOrder: 18
+  m_RootOrder: 17
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1172301513
 BoxCollider:
@@ -4364,7 +4384,7 @@ GameObject:
   - component: {fileID: 1512227502}
   - component: {fileID: 1512227501}
   m_Layer: 5
-  m_Name: Canvas
+  m_Name: VictoryScreen
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9476,6 +9496,7 @@ MonoBehaviour:
   col: 1
   openBox: {fileID: 809179792}
   isOpenBox: 0
+  openBoxIngredients: []
 --- !u!4 &1707452583 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4222923163794315811, guid: db2c3860fc1605d4ca86e20648273a64,
@@ -10074,29 +10095,13 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1871457433}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1793972793}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
-      - m_Target: {fileID: 1871457430}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
+      m_Calls: [{m_Target: {fileID: 1793972793}, m_MethodName: SetActive, m_Mode: 6,
+          m_Arguments: {m_ObjectArgument: {fileID: 0}, m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object,
+              UnityEngine', m_IntArgument: 0, m_FloatArgument: 0, m_StringArgument: '',
+            m_BoolArgument: 1}, m_CallState: 2}, {m_Target: {fileID: 1871457430},
+          m_MethodName: SetActive, m_Mode: 6, m_Arguments: {m_ObjectArgument: {fileID: 0},
+            m_ObjectArgumentAssemblyTypeName: 'UnityEngine.Object, UnityEngine', m_IntArgument: 0,
+            m_FloatArgument: 0, m_StringArgument: '', m_BoolArgument: 0}, m_CallState: 2}]
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &1871457433
@@ -10386,7 +10391,7 @@ GameObject:
   - component: {fileID: 2023838001}
   - component: {fileID: 2023838000}
   m_Layer: 5
-  m_Name: Button
+  m_Name: MainMenuButton
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10455,17 +10460,6 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2010828034}
-        m_MethodName: SetActive
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 1
-        m_CallState: 2
       - m_Target: {fileID: 1512227500}
         m_MethodName: SetActive
         m_Mode: 6
@@ -10477,8 +10471,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 100267936}
-        m_MethodName: ResetCauldron
+      - m_Target: {fileID: 596755552}
+        m_MethodName: ResetMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10488,26 +10482,15 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-      - m_Target: {fileID: 1871685882}
-        m_MethodName: RestartTimer
-        m_Mode: 1
+      - m_Target: {fileID: 1001292352}
+        m_MethodName: TransitionTo
+        m_Mode: 5
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1871685882}
-        m_MethodName: set_enabled
-        m_Mode: 6
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: TitleScreen
           m_BoolArgument: 0
         m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
@@ -10656,6 +10639,7 @@ MonoBehaviour:
   col: 2
   openBox: {fileID: 809179792}
   isOpenBox: 0
+  openBoxIngredients: []
 --- !u!4 &2084414804 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4222923163794315811, guid: db2c3860fc1605d4ca86e20648273a64,
@@ -10708,7 +10692,7 @@ Transform:
   m_LocalScale: {x: -0.02212098, y: -0.02212098, z: -0.02212098}
   m_Children: []
   m_Father: {fileID: 809179793}
-  m_RootOrder: 17
+  m_RootOrder: 18
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &2088936692
 BoxCollider:

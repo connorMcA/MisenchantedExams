@@ -473,6 +473,11 @@ public class Cauldron : MonoBehaviour
     public void ResetCauldron() {
         numLives = 3;
         ClearCauldron();
+        lastIngredient = null;
+        foreach (Box b in publicBoxes)
+        {
+            b.Reset();
+        }
     }
 
     void OnGUI()
