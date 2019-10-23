@@ -38,8 +38,9 @@ public class CameraManager : MonoBehaviour
         gamePosition = new Vector3(0, -.5f, -12.25f);
         gameRotation = Quaternion.Euler(13.425f, 0, 0);
 
-        transform.position = titleScreenPosition;
-        transform.rotation = titleScreenRotation;
+        transform.position = startPosition = targetPosition = titleScreenPosition;
+        transform.rotation = startRotation = targetRotation = titleScreenRotation;
+        
 
         startTime = Time.time;
     }
@@ -51,8 +52,7 @@ public class CameraManager : MonoBehaviour
         {
             return;
         }
-
-        float percentComplete = (Time.time - startTime) / totalTime + 0.01f ;
+        float percentComplete = (Time.time - startTime) / totalTime ;
 
         if( percentComplete <= 1.0f)
         {

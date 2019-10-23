@@ -36,6 +36,11 @@ public class Spell : MonoBehaviour
         }
     }
 
+    public void Reset()
+    {
+        currentIngredientIdx = 0;
+    }
+
     // verifies whether the ingredient is the correct ingredient to be added at this point
     // if true, it will also move on to the next expected ingredient
     public bool VerifyIngredient(Ingredient ingredient)

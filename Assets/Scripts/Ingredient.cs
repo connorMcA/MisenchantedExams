@@ -10,10 +10,13 @@ public class Ingredient : MonoBehaviour
     public Color vialColor;
     public Mesh vialShape;
 
+    private Vector3 startPosition;
+
     // Start is called before the first frame update
     void Start()
     {
         GetComponent<Renderer>().material.color = vialColor;
+        startPosition = transform.position;
     }
 
     // Update is called once per frame
@@ -31,6 +34,11 @@ public class Ingredient : MonoBehaviour
             GetComponent<Draggable>().ResetPosition();
         }
         
+    }
+
+    public void ResetPosition()
+    {
+        transform.position = startPosition;
     }
 
 }

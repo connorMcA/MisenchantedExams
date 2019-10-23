@@ -28,6 +28,13 @@ public class LevelManager : MonoBehaviour
 
     }
 
+    public void ResetMainMenu()
+    {
+        gameManager.Stop();
+        titleScreen.SetActive(true);
+        Time.timeScale = 1;
+    }
+
     public void ExitGame()
     {
         Application.Quit();
