@@ -2,14 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Draggable : MonoBehaviour
+public abstract class Draggable : MonoBehaviour
 {
     // starting position
     Vector3 startingPos;
     bool stillDraggable = true;
-
-    // reference to cauldron
-    public GameObject cauldron;
+    bool colliding = false;
+    Collider collider;
 
     // Stores object's position prior to dragging.
     private void OnMouseDown()
@@ -23,7 +22,7 @@ public class Draggable : MonoBehaviour
     {
         if (stillDraggable)
         {
-            float distance_to_screen = Camera.main.WorldToScreenPoint(cauldron.transform.position).z;
+            float distance_to_screen = Camera.main.WorldToScreenPoint(gameObject.transform.position).z;
             transform.position = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, distance_to_screen));
         }
     }
@@ -31,12 +30,31 @@ public class Draggable : MonoBehaviour
     // Resets position when let go.
     private void OnMouseUp()
     {
-        transform.position = startingPos;
+        if(colliding)
+        {
+            HandleCollision(collider);
+        }
+        ResetPosition();
     }
+
+    void OnTriggerEnter(Collider collider)
+    {
+        colliding = true;
+        this.collider = collider;
+    }
+
+    void OnTriggerExit(Collider collider)
+    {
+        colliding = false;
+        this.collider = null;
+    }
+
 
     public void ResetPosition()
     {
         transform.position = startingPos;
         stillDraggable = false;
     }
+
+    protected abstract void HandleCollision(Collider collider);
 }
