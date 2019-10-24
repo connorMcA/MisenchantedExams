@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Ingredient : MonoBehaviour
+public class Ingredient : Draggable
 {
 
     public string ingredientName;
@@ -25,20 +25,17 @@ public class Ingredient : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider collider)
+    public void ResetIngrenientPosition()
+    {
+        transform.position = startPosition;
+    }
+
+    protected override void HandleCollision(Collider collider)
     {
         Cauldron cauldron = collider.gameObject.GetComponent<Cauldron>();
         if (cauldron != null)
         {
             cauldron.AddIngredient(this);
-            GetComponent<Draggable>().ResetPosition();
         }
-        
     }
-
-    public void ResetPosition()
-    {
-        transform.position = startPosition;
-    }
-
 }

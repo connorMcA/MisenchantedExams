@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Interaction : MonoBehaviour
+public class Interaction : Draggable
 {
     public InteractionType Action;
 
@@ -25,14 +25,12 @@ public class Interaction : MonoBehaviour
         
     }
 
-    void OnTriggerEnter(Collider collider)
+    protected override void HandleCollision(Collider collider)
     {
         Cauldron cauldron = collider.gameObject.GetComponent<Cauldron>();
         if (cauldron != null)
         {
             cauldron.AddInteraction(this);
-            GetComponent<Draggable>().ResetPosition();
         }
-
     }
 }
