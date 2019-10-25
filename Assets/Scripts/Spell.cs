@@ -19,6 +19,9 @@ public class Spell : MonoBehaviour
     public GameObject victoryScreenText;
     Text title;
 
+    // Text for ingredients.
+    public Text ingredients;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -33,6 +36,7 @@ public class Spell : MonoBehaviour
         if (CurrentIngredientIdx == requiredIngredients.Count) {
             title.text = "You Won!";
             victoryScreen.SetActive(true);
+            ingredients.text = "";
         }
     }
 
@@ -47,6 +51,7 @@ public class Spell : MonoBehaviour
     {
         if(ingredient.ingredientName.Equals(requiredIngredients[CurrentIngredientIdx].ingredientName))
         {
+            ingredients.text += "Added " + requiredIngredients[CurrentIngredientIdx].ingredientName + "!\n";
             CurrentIngredientIdx++;
             return true;
         }
