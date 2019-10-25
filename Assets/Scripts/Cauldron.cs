@@ -34,8 +34,6 @@ public class Cauldron : MonoBehaviour
 
     public int fontSize = 20;
 
-    int numLives = 3;
-
     // Canvas object for Game Over screen
     public GameObject gameOverScreen;
 
@@ -46,7 +44,6 @@ public class Cauldron : MonoBehaviour
         STEAMING = BUBBLING;
         SPARKLING = BUBBLING;
         effects = new List<ParticleSystem> { SPARKLING, BUBBLING, STEAMING, null };
-        numLives = 3;
         liquidObject.GetComponent<Renderer>().material.color = liquidColor;
         foreach (Box box in publicBoxes)
         {
@@ -72,11 +69,6 @@ public class Cauldron : MonoBehaviour
         else
         {
             BlowOutCandle();
-            numLives--;
-            if(numLives == 0)
-            {
-                GameOver();
-            }
         }
     }
 
@@ -471,7 +463,6 @@ public class Cauldron : MonoBehaviour
     }
 
     public void ResetCauldron() {
-        numLives = 3;
         ClearCauldron();
         lastIngredient = null;
         foreach (Box b in publicBoxes)
@@ -486,9 +477,6 @@ public class Cauldron : MonoBehaviour
 
     void OnGUI()
     {
-        GUIStyle guiStyle = new GUIStyle();
-        guiStyle.fontSize = fontSize;
-        guiStyle.normal.textColor = Color.white;
-        GUI.Box(new Rect(10, Screen.height - 50, 100, 100), "Remaining Lives: " + numLives.ToString(), guiStyle);
+        
     }
 }
