@@ -4,11 +4,18 @@ using UnityEngine;
 
 public class Candle : MonoBehaviour
 {
+    public ParticleSystem particles;
     bool active = true;
     // Start is called before the first frame update
     void Start()
     {
+        
+    }
 
+    public void Reset()
+    {
+        active = true;
+        particles.Play();
     }
 
     // Update is called once per frame
@@ -26,5 +33,6 @@ public class Candle : MonoBehaviour
     {
         active = false;
 		// do a blow out animation
+        particles.Stop();
     }
 }

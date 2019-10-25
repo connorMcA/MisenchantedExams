@@ -71,7 +71,7 @@ public class Cauldron : MonoBehaviour
         }
         else
         {
-            //BlowOutCandle();
+            BlowOutCandle();
             numLives--;
             if(numLives == 0)
             {
@@ -477,6 +477,10 @@ public class Cauldron : MonoBehaviour
         foreach (Box b in publicBoxes)
         {
             b.Reset();
+        }
+        foreach(Candle c in candles)
+        {
+            c.Reset();
         }
     }
 
