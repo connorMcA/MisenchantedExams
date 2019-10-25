@@ -71,12 +71,7 @@ public class Cauldron : MonoBehaviour
         }
         else
         {
-            //BlowOutCandle();
-            numLives--;
-            if(numLives == 0)
-            {
-                GameOver();
-            }
+            BlowOutCandle();
         }
     }
 
@@ -431,6 +426,11 @@ public class Cauldron : MonoBehaviour
         }
     }
 
+    public void SprigganAttack()
+    {
+        BlowOutCandle();
+    }
+
     private void ClearCauldron()
     {
         if (liquidEffect != null)
@@ -449,7 +449,11 @@ public class Cauldron : MonoBehaviour
         // We need to be able to blow out a candle when a player adds the
         // incorrect ingredient. If all the candles are then blown out, this
         // method is responsible for starting the end of game process.
-
+        numLives--;
+        if (numLives == 0)
+        {
+            GameOver();
+        }
         for (int i = 0; i < candles.Count; i++)
         {
             if (candles[i].isActive())
