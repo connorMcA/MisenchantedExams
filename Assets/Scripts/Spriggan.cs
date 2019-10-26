@@ -10,21 +10,23 @@ public class Spriggan : MonoBehaviour
         new Vector3(11.44f, -6.07f, 14.63f),
         new Vector3(4.18f, 5.85f, 23.4f),
         new Vector3(-5.53f, 5.85f, 23.4f),
-        new Vector3(-6.16f,-6.94f, 16.57f),
-        new Vector3(0, -16f, 3.14f)};
+        new Vector3(-7.66f,-6.94f, 16.57f),
+        new Vector3(-7.66f,-6.94f, 16.57f),
+        new Vector3(0, -5f, 3.14f)};
 
     float[] timeToMoveToNextPosition = {
         5.0f,
         .5f,
         3f,
         .5f,
+        1f,
         .5f
         };
     float currentTransitionTime;
 
 
     double delay;
-    double MAX_DELAY = 1;
+    double MAX_DELAY = 10;
 
     int positionIndex;
 
