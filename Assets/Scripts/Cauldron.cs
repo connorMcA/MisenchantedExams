@@ -40,16 +40,12 @@ public class Cauldron : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        BUBBLING = GameObject.Find("Particle System").GetComponent<ParticleSystem>();
-        STEAMING = BUBBLING;
-        SPARKLING = BUBBLING;
-        effects = new List<ParticleSystem> { SPARKLING, BUBBLING, STEAMING, null };
+        effects = new List<ParticleSystem> { BUBBLING, STEAMING, null };
         liquidObject.GetComponent<Renderer>().material.color = liquidColor;
         foreach (Box box in publicBoxes)
         {
             boxes[box.row, box.col] = box;
         }
-
     }
 
     // Update is called once per frame
@@ -74,11 +70,16 @@ public class Cauldron : MonoBehaviour
 
     private void RandomState()
     {
+        ClearCauldron();
+
         liquidColor = colors[UnityEngine.Random.Range(0, colors.Count - 1)];
         liquidObject.GetComponent<Renderer>().material.color = liquidColor;
-        //int max = liquidColor == CLEAR ? effects.Count - 1 : effects.Count;
-        //liquidEffect = effects[UnityEngine.Random.Range(0, max)];
-        liquidEffect = null;
+        int max = liquidColor == CLEAR ? effects.Count - 1 : effects.Count;
+        liquidEffect = effects[UnityEngine.Random.Range(0, max)];
+        if (liquidEffect != null)
+        {
+            liquidEffect.Play();
+        }
         isInValidState = false;
     }
 
@@ -166,7 +167,7 @@ public class Cauldron : MonoBehaviour
             {
                 ClearCauldron();
             }
-            else if (interaction.Action == InteractionType.COOL && lastIngredient.name.ToLower().Contains("w"))
+            else if (interaction.Action == InteractionType.COOL && lastIngredient != null && lastIngredient.name.ToLower().Contains("w"))
             {
                 ClearCauldron();
             }
@@ -224,7 +225,7 @@ public class Cauldron : MonoBehaviour
         }
         else if (liquidEffect == SPARKLING)
         {
-            if (interaction.Action == InteractionType.TAP && lastIngredient.name.ToLower().Contains("hair"))
+            if (interaction.Action == InteractionType.TAP && lastIngredient != null && lastIngredient.name.ToLower().Contains("hair"))
             {
                 ClearCauldron();
             }

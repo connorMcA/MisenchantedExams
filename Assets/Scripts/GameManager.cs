@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
 
     public void StartGame()
     {
+        GameObject.Find("Bubble").GetComponent<ParticleSystem>().Stop();
         spell.enabled = true;
         spell.Reset();
         cauldron.enabled = true;
