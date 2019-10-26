@@ -1,25 +1,24 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class GameManager : MonoBehaviour
 {
     Timer timer;
     Cauldron cauldron;
-    Spell spell;
     GameObject pauseMenu;
-    GameObject levelObjects;
+    GameObject[] levels;
+    GameObject everyLevelObjects;
     Box openBox;
-
+    int levelCount = 3;
 
     // Start is called before the first frame update
     void Start()
     {
         cauldron = GameObject.Find("Cauldron").GetComponent<Cauldron>();
         cauldron.enabled = false;
-
-        spell = GetComponent<Spell>();
-        spell.enabled = false;
 
         timer = GameObject.Find("Timer").GetComponent<Timer>();
         timer.enabled = false;
@@ -29,8 +28,17 @@ public class GameManager : MonoBehaviour
 
         openBox = GameObject.Find("Open Box").GetComponent<Box>();
 
-        levelObjects = GameObject.Find("LevelObjects");
-        levelObjects.SetActive(false);
+        everyLevelObjects = GameObject.Find("EveryLevelObjects");
+        everyLevelObjects.SetActive(false);
+
+        levels = new GameObject[3];
+
+        for (int i = 0; i < levelCount; i++)
+        {
+
+            levels[i] = GameObject.Find("Level" + i.ToString() + "Objects");
+            levels[i].SetActive(false);
+        }
         
     }
 
@@ -43,26 +51,32 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartGame()
+    public void StartGame(int levelNumber)
     {
         GameObject.Find("Bubble").GetComponent<ParticleSystem>().Stop();
-        spell.enabled = true;
-        spell.Reset();
         cauldron.enabled = true;
         cauldron.ResetCauldron();
         openBox.Reset();
         timer.enabled = true;
         timer.RestartTimer();
-        levelObjects.SetActive(true);
+        levels[levelNumber].SetActive(true);
+        Spell spell = levels[levelNumber].GetComponent<Spell>();
+        spell.Reset();
+        spell.ingredients = GetComponentInChildren<Text>();
+        cauldron.spell = spell;
+        everyLevelObjects.SetActive(true);
         Time.timeScale = 1;
     }
 
     public void Stop()
     {
-        spell.enabled = false;
         cauldron.enabled = false;
         timer.enabled = false;
-        levelObjects.SetActive(false);
+        foreach (GameObject levelObjects in levels)
+        {
+            levelObjects.SetActive(false);
+        }
+        everyLevelObjects.SetActive(false);
     }
 
     public void TogglePauseMode()

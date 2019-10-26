@@ -7,11 +7,15 @@ public class LevelManager : MonoBehaviour
 
     public GameObject titleScreen;
     public GameManager gameManager;
-
+    public GameObject mainMenu;
+    public GameObject levelSelect;
     // Start is called before the first frame update
     void Start()
     {
         titleScreen = GameObject.Find("TitleScreen");
+        mainMenu = GameObject.Find("MainMenu");
+        levelSelect = GameObject.Find("LevelSelect");
+        levelSelect.SetActive(false);
         gameManager = GetComponent<GameManager>();
     }
 
@@ -21,10 +25,10 @@ public class LevelManager : MonoBehaviour
         
     }
 
-    public void StartLevel()
+    public void StartLevel(int levelNumber)
     {
         titleScreen.SetActive(false);
-        gameManager.StartGame();
+        gameManager.StartGame(levelNumber);
 
     }
 
@@ -33,6 +37,8 @@ public class LevelManager : MonoBehaviour
         gameManager.Stop();
         titleScreen.SetActive(true);
         Time.timeScale = 1;
+        mainMenu.SetActive(true);
+        levelSelect.SetActive(false);
     }
 
     public void ExitGame()

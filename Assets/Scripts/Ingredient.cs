@@ -8,19 +8,17 @@ public class Ingredient : Draggable
     public string ingredientName;
     public Box box;
     public Color vialColor;
-    public Mesh vialShape;
 
     private Vector3 startPosition;
 
     // Start is called before the first frame update
     void Start()
     {
-        Renderer inner = GetComponentInChildren<Renderer>();
-        if (inner != null)
+        Renderer[] renderers = GetComponentsInChildren<Renderer>();
+        foreach (Renderer renderer in renderers)
         {
-            inner.material.color = vialColor;
+            renderer.material.color = vialColor;
         }
-        GetComponent<Renderer>().material.color = vialColor;
         startPosition = transform.position;
     }
 
