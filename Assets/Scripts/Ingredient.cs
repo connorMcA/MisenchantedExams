@@ -15,6 +15,11 @@ public class Ingredient : Draggable
     // Start is called before the first frame update
     void Start()
     {
+        Renderer inner = GetComponentInChildren<Renderer>();
+        if (inner != null)
+        {
+            inner.material.color = vialColor;
+        }
         GetComponent<Renderer>().material.color = vialColor;
         startPosition = transform.position;
     }

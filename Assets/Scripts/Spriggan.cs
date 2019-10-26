@@ -82,5 +82,6 @@ public class Spriggan : MonoBehaviour
             cauldron.SprigganAttack();
             Reset();
         }
+        
     }
 }

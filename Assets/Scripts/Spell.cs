@@ -26,6 +26,7 @@ public class Spell : MonoBehaviour
     void Start()
     {
         title = victoryScreenText.GetComponent<Text>();
+        ingredients = GetComponentInChildren<Text>();
     }
 
     // Update is called once per frame
