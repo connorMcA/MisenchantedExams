@@ -32,6 +32,8 @@ public class Cauldron : MonoBehaviour
     public ParticleSystem SPARKLING;
     public List<ParticleSystem> effects;
 
+    public AudioSource bubblingSound;
+
     public int fontSize = 20;
 
     // Canvas object for Game Over screen
@@ -46,6 +48,7 @@ public class Cauldron : MonoBehaviour
         {
             boxes[box.row, box.col] = box;
         }
+        bubblingSound.Stop();
     }
 
     // Update is called once per frame
@@ -79,6 +82,16 @@ public class Cauldron : MonoBehaviour
         if (liquidEffect != null)
         {
             liquidEffect.Play();
+            if (liquidEffect == BUBBLING)
+            {
+                bubblingSound.Play();
+            }
+            else{
+                if (bubblingSound.isPlaying)
+                {
+                    bubblingSound.Stop();
+                }
+            }
         }
         isInValidState = false;
     }
@@ -434,6 +447,10 @@ public class Cauldron : MonoBehaviour
         if (liquidEffect != null)
         {
             liquidEffect.Stop();
+            if (bubblingSound.isPlaying)
+            {
+                bubblingSound.Stop();
+            }
         }
         liquidEffect = null;
         liquidColor = CLEAR;
