@@ -33,6 +33,7 @@ public class Cauldron : MonoBehaviour
     public List<ParticleSystem> effects;
 
     // audio Sounds
+    public AudioSource sound;
         // cauldron effect sounds
     public AudioSource bubblingSound; // done
     public AudioSource steamingSound; // done
@@ -138,7 +139,7 @@ public class Cauldron : MonoBehaviour
                 }
             }
             else
-                    {
+            {
                 if (bubblingSound.isPlaying)
                 {
                     bubblingSound.Stop();
