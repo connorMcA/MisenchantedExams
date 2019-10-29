@@ -26,7 +26,7 @@ public class Spriggan : MonoBehaviour
 
 
     double delay;
-    double MAX_DELAY = 10;
+    double MAX_DELAY = 1;
 
     int positionIndex;
 
@@ -57,6 +57,9 @@ public class Spriggan : MonoBehaviour
                 Reset();
                 return;
             }
+            Vector3 target = transform.position - (transform.position != positions[positionIndex + 1] ? positions[positionIndex + 1] : positions[positionIndex + 2]);
+            target.y = 0;
+            transform.rotation = Quaternion.LookRotation(target);
             currentTransitionTime = 0;
         }
     }
@@ -67,6 +70,7 @@ public class Spriggan : MonoBehaviour
         positionIndex = 0;
         currentTransitionTime = 0;
         transform.position = positions[0];
+        transform.rotation = Quaternion.LookRotation(transform.position - positions[positionIndex + 1]);
     }
 
     private void OnMouseDown()
