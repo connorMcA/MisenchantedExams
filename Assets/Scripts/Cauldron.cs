@@ -35,18 +35,17 @@ public class Cauldron : MonoBehaviour
     // audio Sounds
         // cauldron effect sounds
     public AudioSource bubblingSound; // done
-    public AudioSource steamingSound; // have
-    public AudioSource sparklingSound;
+    public AudioSource steamingSound; // done
+    public AudioSource sparklingSound; //have
     // room sounds
     public AudioSource blowCandleSound; // done
-    public AudioSource boxOpenSound;
     // cauldron interaction sounds
-    public AudioSource splooshSound; // ingredient added - done
+    public AudioSource splooshSound; // ingredient added - have
         // case specific for interaction
-    public AudioSource heatSound;
-    public AudioSource coolSound; // have
-    public AudioSource tapSound;
-    public AudioSource stirSound;
+    public AudioSource heatSound; //have
+    public AudioSource coolSound; //have 
+    public AudioSource tapSound; //have
+    public AudioSource stirSound; //have
 
 
     public int fontSize = 20;
@@ -65,6 +64,8 @@ public class Cauldron : MonoBehaviour
             boxes[box.row, box.col] = box;
         }
         bubblingSound.Stop();
+        steamingSound.Stop();
+        sparklingSound.Stop();
     }
 
     // Update is called once per frame
@@ -537,6 +538,7 @@ public class Cauldron : MonoBehaviour
             if (candles[i].isActive())
             {
                 blowCandleSound.Play();
+                splooshSound.Play();
                 candles[i].BlowOut();
                 // if its the last candle, games over
                 if (i == candles.Count - 1)
