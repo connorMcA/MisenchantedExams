@@ -5169,7 +5169,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 25
+  m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &65932514
 GameObject:
@@ -5205,7 +5205,7 @@ Transform:
   - {fileID: 485396531}
   - {fileID: 935670027}
   m_Father: {fileID: 0}
-  m_RootOrder: 26
+  m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &65932516
 MonoBehaviour:
@@ -5581,7 +5581,7 @@ MonoBehaviour:
   - {fileID: 889247238}
   BUBBLING: {fileID: 44372428}
   STEAMING: {fileID: 1370507444}
-  SPARKLING: {fileID: 0}
+  SPARKLING: {fileID: 1428723466}
   effects:
   - {fileID: 0}
   - {fileID: 0}
@@ -7754,8 +7754,8 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
-  playOnAwake: 1
+  prewarm: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -7874,9 +7874,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 3
-      minScalar: 1
+      minMaxState: 0
+      scalar: 5
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -12410,7 +12410,7 @@ Transform:
   m_Children:
   - {fileID: 1465819019}
   m_Father: {fileID: 0}
-  m_RootOrder: 29
+  m_RootOrder: 30
   m_LocalEulerAnglesHint: {x: 22.691002, y: 23.386, z: -14.064001}
 --- !u!82 &362078407
 AudioSource:
@@ -14484,8 +14484,8 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
-  playOnAwake: 1
+  prewarm: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -14604,9 +14604,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 3
-      minScalar: 1
+      minMaxState: 0
+      scalar: 5
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -19139,7 +19139,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 28
+  m_RootOrder: 29
   m_LocalEulerAnglesHint: {x: 22.691002, y: -23.386002, z: -14.064001}
 --- !u!82 &576713881
 AudioSource:
@@ -19445,6 +19445,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Action: 3
+  effect: {fileID: 0}
 --- !u!136 &589427884
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -22914,6 +22915,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Action: 2
+  effect: {fileID: 362078405}
 --- !u!136 &953999946
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -22972,7 +22974,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953999943}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &953999949
 Transform:
   m_ObjectHideFlags: 0
@@ -22980,13 +22982,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 953999943}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: -0.49529743, z: -0, w: -0.86872345}
   m_LocalPosition: {x: -11.940297, y: -6.9665575, z: 26.906073}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.461, y: 1.461, z: 1.461}
   m_Children: []
   m_Father: {fileID: 788933162}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: -300.621, z: 0}
 --- !u!1 &956115430 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -927199367670048503, guid: 654053889b8a5d1439f32c81521d4e54,
@@ -24097,7 +24099,7 @@ Transform:
   - {fileID: 956115431}
   - {fileID: 2098284987}
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1074977564
 MonoBehaviour:
@@ -26664,7 +26666,7 @@ ParticleSystem:
     startColor:
       serializedVersion: 2
       minMaxState: 2
-      minColor: {r: 0.4481132, g: 0.954288, b: 1, a: 1}
+      minColor: {r: 0, g: 0, b: 0, a: 1}
       maxColor: {r: 0.24528301, g: 0.24528301, b: 0.24528301, a: 1}
       maxGradient:
         serializedVersion: 2
@@ -27308,7 +27310,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 200
+      scalar: 150
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -31145,7 +31147,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 24
+  m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!1 &1372244549 stripped
 GameObject:
@@ -31492,6 +31494,12 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.1, y: 0.1, z: 0.14}
   m_Center: {x: -0.025, y: 0.04, z: 0}
+--- !u!198 &1428723466 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 5190152327995800468, guid: 33b274d16eef52348bcca0e3d16a93e5,
+    type: 3}
+  m_PrefabInstance: {fileID: 1704579300}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1429706772
 GameObject:
   m_ObjectHideFlags: 0
@@ -31928,7 +31936,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -37403,6 +37411,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Action: 1
+  effect: {fileID: 576713879}
 --- !u!136 &1558257716
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -37461,7 +37470,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1558257713}
-  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!4 &1558257719
 Transform:
   m_ObjectHideFlags: 0
@@ -37469,13 +37478,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1558257713}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: -0, y: 0.514378, z: -0, w: 0.85756356}
   m_LocalPosition: {x: -10.750298, y: -6.9665575, z: 28.026073}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.6589752, y: 1.6589752, z: 1.6589752}
   m_Children: []
   m_Father: {fileID: 788933162}
   m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 61.912003, z: 0}
 --- !u!1 &1598785876
 GameObject:
   m_ObjectHideFlags: 0
@@ -43322,6 +43331,80 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1680612704}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1704579300
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5190152327995800490, guid: 33b274d16eef52348bcca0e3d16a93e5,
+        type: 3}
+      propertyPath: m_Name
+      value: Sparks
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190152327995800471, guid: 33b274d16eef52348bcca0e3d16a93e5,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190152327995800471, guid: 33b274d16eef52348bcca0e3d16a93e5,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -8.43
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190152327995800471, guid: 33b274d16eef52348bcca0e3d16a93e5,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 3.24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190152327995800471, guid: 33b274d16eef52348bcca0e3d16a93e5,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190152327995800471, guid: 33b274d16eef52348bcca0e3d16a93e5,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190152327995800471, guid: 33b274d16eef52348bcca0e3d16a93e5,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190152327995800471, guid: 33b274d16eef52348bcca0e3d16a93e5,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190152327995800471, guid: 33b274d16eef52348bcca0e3d16a93e5,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 24
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190152327995800471, guid: 33b274d16eef52348bcca0e3d16a93e5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190152327995800471, guid: 33b274d16eef52348bcca0e3d16a93e5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190152327995800471, guid: 33b274d16eef52348bcca0e3d16a93e5,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5190152327995800468, guid: 33b274d16eef52348bcca0e3d16a93e5,
+        type: 3}
+      propertyPath: playOnAwake
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 33b274d16eef52348bcca0e3d16a93e5, type: 3}
 --- !u!1 &1708695824
 GameObject:
   m_ObjectHideFlags: 0
@@ -44072,6 +44155,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Action: 0
+  effect: {fileID: 0}
 --- !u!136 &1783281989
 CapsuleCollider:
   m_ObjectHideFlags: 0

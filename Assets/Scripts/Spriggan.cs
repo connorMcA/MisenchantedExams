@@ -26,7 +26,7 @@ public class Spriggan : MonoBehaviour
 
 
     double delay;
-    double MAX_DELAY = 1;
+    double MAX_DELAY = 10;
 
     int positionIndex;
 
