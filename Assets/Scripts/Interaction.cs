@@ -34,7 +34,7 @@ public class Interaction : Draggable
             if(effect != null)
             {
                 effect.Play();
-                Invoke("StopEffect", 3);
+                Invoke("StopEffect", 1);
             }
         }
     }
