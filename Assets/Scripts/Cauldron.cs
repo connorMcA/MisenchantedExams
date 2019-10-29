@@ -57,7 +57,7 @@ public class Cauldron : MonoBehaviour
     void Start()
     {
         
-        effects = new List<ParticleSystem> { BUBBLING, STEAMING, null };
+        effects = new List<ParticleSystem> { BUBBLING, STEAMING, SPARKLING, null };
         liquidObject.GetComponent<Renderer>().material.color = liquidColor;
         foreach (Box box in publicBoxes)
         {
