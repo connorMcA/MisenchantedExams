@@ -5591,7 +5591,6 @@ MonoBehaviour:
   steamingSound: {fileID: 685543396}
   sparklingSound: {fileID: 2138585818}
   blowCandleSound: {fileID: 1372244550}
-  boxOpenSound: {fileID: 0}
   splooshSound: {fileID: 1117884203}
   heatSound: {fileID: 576713881}
   coolSound: {fileID: 362078407}
@@ -7754,8 +7753,8 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
-  playOnAwake: 1
+  prewarm: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -7874,9 +7873,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 3
-      minScalar: 1
+      minMaxState: 0
+      scalar: 5
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -14484,8 +14483,8 @@ ParticleSystem:
   ringBufferMode: 0
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
-  prewarm: 0
-  playOnAwake: 1
+  prewarm: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -14604,9 +14603,9 @@ ParticleSystem:
         m_RotationOrder: 4
     startSpeed:
       serializedVersion: 2
-      minMaxState: 3
-      scalar: 3
-      minScalar: 1
+      minMaxState: 0
+      scalar: 5
+      minScalar: 3
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -19445,6 +19444,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Action: 3
+  effect: {fileID: 0}
 --- !u!136 &589427884
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -22904,6 +22904,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Action: 2
+  effect: {fileID: 362078405}
 --- !u!136 &953999946
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -32015,7 +32016,7 @@ ParticleSystem:
   ringBufferLoopRange: {x: 0, y: 1}
   looping: 1
   prewarm: 0
-  playOnAwake: 1
+  playOnAwake: 0
   useUnscaledTime: 0
   autoRandomSeed: 1
   useRigidbodyForVelocity: 1
@@ -37490,6 +37491,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Action: 1
+  effect: {fileID: 576713879}
 --- !u!136 &1558257716
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -44159,6 +44161,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Action: 0
+  effect: {fileID: 0}
 --- !u!136 &1783281989
 CapsuleCollider:
   m_ObjectHideFlags: 0

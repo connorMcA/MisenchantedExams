@@ -5,7 +5,7 @@ using UnityEngine;
 public class Interaction : Draggable
 {
     public InteractionType Action;
-
+    public ParticleSystem effect;
 
     public enum InteractionType
     {
@@ -31,6 +31,19 @@ public class Interaction : Draggable
         if (cauldron != null)
         {
             cauldron.AddInteraction(this);
+            if(effect != null)
+            {
+                effect.Play();
+                Invoke("StopEffect", 1);
+            }
+        }
+    }
+
+    protected void StopEffect()
+    {
+        if (effect != null)
+        {
+            effect.Stop();
         }
     }
 }
