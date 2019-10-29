@@ -20,6 +20,10 @@ public class Box : MonoBehaviour
     public bool isOpenBox;
     public List<Ingredient> openBoxIngredients;
 
+    // box opening sound
+    public AudioSource boxOpenSound;
+
+
     // each box object has a property saying whether the box is open or not - either a single box is open, in which cases all other boxes are set to closed, or
     bool isOpen = false;
     private Vector3[] positions = {
@@ -66,7 +70,7 @@ public class Box : MonoBehaviour
     {
         if (!isOpenBox && ingredients[0] != openBox.ingredients[0])
         {
-            
+            boxOpenSound.Play();
             for (int i = 0; i < ingredients.Count; i++)
             {
                 ingredients[i].GetComponent<Draggable>().enabled = true;
@@ -79,4 +83,5 @@ public class Box : MonoBehaviour
             }
         }
     }
+
 }
