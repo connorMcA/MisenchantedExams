@@ -33,7 +33,6 @@ public class Cauldron : MonoBehaviour
     public List<ParticleSystem> effects;
 
     // audio Sounds
-    public AudioSource sound;
         // cauldron effect sounds
     public AudioSource bubblingSound; // done
     public AudioSource steamingSound; // done
@@ -64,7 +63,9 @@ public class Cauldron : MonoBehaviour
         {
             boxes[box.row, box.col] = box;
         }
+
         bubblingSound.Stop();
+        //bubblingSound.Stop();
         steamingSound.Stop();
         sparklingSound.Stop();
     }
@@ -104,7 +105,7 @@ public class Cauldron : MonoBehaviour
             if (liquidEffect == BUBBLING)
             {
                 // only bubbling is playing
-                bubblingSound.Play();
+                bubblingSound.PlayDelayed(0.3f);
                 if (steamingSound.isPlaying)
                 {
                     steamingSound.Stop();
@@ -116,7 +117,7 @@ public class Cauldron : MonoBehaviour
             }
             else if (liquidEffect == STEAMING)
             {
-                steamingSound.Play();
+                steamingSound.PlayDelayed(0.3f);
                 if (bubblingSound.isPlaying)
                 {
                     bubblingSound.Stop();
@@ -128,7 +129,7 @@ public class Cauldron : MonoBehaviour
             }
             else if (liquidEffect == SPARKLING)
             {
-                sparklingSound.Play();
+                sparklingSound.PlayDelayed(0.3f);
                 if (bubblingSound.isPlaying)
                 {
                     bubblingSound.Stop();
@@ -138,21 +139,16 @@ public class Cauldron : MonoBehaviour
                     steamingSound.Stop();
                 }
             }
-            else
-            {
-                if (bubblingSound.isPlaying)
-                {
-                    bubblingSound.Stop();
-                }
-                if (steamingSound.isPlaying)
-                {
-                    steamingSound.Stop();
-                }
-                if (sparklingSound.isPlaying)
-                {
-                    sparklingSound.Stop();
-                }
-            }
+        }
+        else
+        {
+
+            bubblingSound.Stop();
+
+            steamingSound.Stop();
+
+            sparklingSound.Stop();
+
         }
         isInValidState = false;
     }
@@ -183,6 +179,7 @@ public class Cauldron : MonoBehaviour
         switch (interaction.Action)
         {
             case InteractionType.TAP:
+                tapSound.Play();
                 if (liquidEffect == STEAMING && (ingredientNum == 0 || ingredientNum == 2))
                 {
                     ClearCauldron();
@@ -193,6 +190,7 @@ public class Cauldron : MonoBehaviour
                 }
                 break;
             case InteractionType.HEAT:
+                heatSound.Play();
                 if ((liquidEffect == SPARKLING && ingredientNum == 0) || (liquidEffect == BUBBLING && ingredientNum == 1))
                 {
                     ClearCauldron();
@@ -203,6 +201,7 @@ public class Cauldron : MonoBehaviour
                 }
                 break;
             case InteractionType.COOL:
+                coolSound.Play();
                 if ((liquidEffect == SPARKLING && ingredientNum == 1) || (liquidEffect == BUBBLING && ingredientNum == 2))
                 {
                     ClearCauldron();
@@ -213,6 +212,7 @@ public class Cauldron : MonoBehaviour
                 }
                 break;
             case InteractionType.STIR:
+                stirSound.Play();
                 if ((liquidEffect == BUBBLING && ingredientNum == 0) || (liquidEffect == STEAMING && ingredientNum == 1)
                     || (liquidEffect == SPARKLING && ingredientNum == 2))
                 {
@@ -231,6 +231,11 @@ public class Cauldron : MonoBehaviour
 
     private void ChangeFromBlue(Interaction interaction)
     {
+        if (interaction.Action == InteractionType.STIR) stirSound.Play();
+        else if (interaction.Action == InteractionType.HEAT) heatSound.Play();
+        else if (interaction.Action == InteractionType.COOL) coolSound.Play();
+        else if (interaction.Action == InteractionType.TAP) tapSound.Play();
+
         if (liquidEffect == BUBBLING)
         {
             if ((interaction.Action == InteractionType.STIR && boxes[0, 0] != null && boxes[2, 2] != null))
@@ -379,7 +384,12 @@ public class Cauldron : MonoBehaviour
 
     private void ChangeFromRed(Interaction interaction)
     {
-        if(liquidEffect == BUBBLING)
+        if (interaction.Action == InteractionType.STIR) stirSound.Play();
+        else if (interaction.Action == InteractionType.HEAT) heatSound.Play();
+        else if (interaction.Action == InteractionType.COOL) coolSound.Play();
+        else if (interaction.Action == InteractionType.TAP) tapSound.Play();
+
+        if (liquidEffect == BUBBLING)
         {
             List<int> ids = new List<int>{12, 11, 7, 10};
             InteractionType[] actions = { InteractionType.HEAT, InteractionType.TAP, InteractionType.COOL, InteractionType.STIR };
@@ -521,6 +531,14 @@ public class Cauldron : MonoBehaviour
             {
                 bubblingSound.Stop();
             }
+            if (steamingSound.isPlaying)
+            {
+                steamingSound.Stop();
+            }
+            if (sparklingSound.isPlaying)
+            {
+                sparklingSound.Stop();
+            }
         }
         liquidEffect = null;
         liquidColor = CLEAR;
@@ -538,8 +556,7 @@ public class Cauldron : MonoBehaviour
         {
             if (candles[i].isActive())
             {
-                blowCandleSound.Play();
-                splooshSound.Play();
+                blowCandleSound.PlayDelayed(0.1f);
                 candles[i].BlowOut();
                 // if its the last candle, games over
                 if (i == candles.Count - 1)
