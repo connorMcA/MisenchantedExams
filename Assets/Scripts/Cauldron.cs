@@ -32,6 +32,8 @@ public class Cauldron : MonoBehaviour
     public ParticleSystem SPARKLING;
     public List<ParticleSystem> effects;
 
+    public ParticleSystem smokePuff;
+
     // audio Sounds
         // cauldron effect sounds
     public AudioSource bubblingSound; // done
@@ -87,6 +89,7 @@ public class Cauldron : MonoBehaviour
         }
         else
         {
+            smokePuff.Play();
             BlowOutCandle();
         }
     }
@@ -518,6 +521,7 @@ public class Cauldron : MonoBehaviour
 
     public void SprigganAttack()
     {
+        smokePuff.Play();
         splooshSound.Play();
         BlowOutCandle();
     }
