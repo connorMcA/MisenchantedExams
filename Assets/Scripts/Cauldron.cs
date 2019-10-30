@@ -32,6 +32,8 @@ public class Cauldron : MonoBehaviour
     public ParticleSystem SPARKLING;
     public List<ParticleSystem> effects;
 
+    public ParticleSystem smokePuff;
+
     // audio Sounds
         // cauldron effect sounds
     public AudioSource bubblingSound; // done
@@ -87,6 +89,7 @@ public class Cauldron : MonoBehaviour
         }
         else
         {
+            smokePuff.Play();
             BlowOutCandle();
         }
     }
@@ -238,7 +241,7 @@ public class Cauldron : MonoBehaviour
 
         if (liquidEffect == BUBBLING)
         {
-            if ((interaction.Action == InteractionType.STIR && boxes[0, 0] != null && boxes[2, 2] != null))
+            if ((interaction.Action == InteractionType.STIR && boxes[2, 0] != null && boxes[0, 2] != null))
             {
                 ClearCauldron();
             }
@@ -518,6 +521,7 @@ public class Cauldron : MonoBehaviour
 
     public void SprigganAttack()
     {
+        smokePuff.Play();
         splooshSound.Play();
         BlowOutCandle();
     }
@@ -586,6 +590,21 @@ public class Cauldron : MonoBehaviour
         }
     }
 
+    public void SetBoxes(Box[] boxes)
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < 3; j++)
+            {
+                this.boxes[i, j] = null;
+            }
+        }
+        this.publicBoxes = new List<Box>(boxes);
+        foreach (Box box in boxes)
+        {
+            this.boxes[box.row, box.col] = box;
+        }
+    }
     void OnGUI()
     {
         

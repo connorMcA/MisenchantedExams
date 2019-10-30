@@ -26,7 +26,7 @@ public class Spell : MonoBehaviour
     void Start()
     {
         title = victoryScreenText.GetComponent<Text>();
-        ingredients = GetComponentInChildren<Text>();
+        ingredients = GameObject.Find("AddedIngredientText").GetComponent<Text>();
     }
 
     // Update is called once per frame
@@ -38,12 +38,17 @@ public class Spell : MonoBehaviour
             title.text = "You Won!";
             victoryScreen.SetActive(true);
             ingredients.text = "";
+            Time.timeScale = 0;
         }
     }
 
     public void Reset()
     {
         currentIngredientIdx = 0;
+        if (ingredients != null)
+        {
+            ingredients.text = "";
+        }
     }
 
     // verifies whether the ingredient is the correct ingredient to be added at this point
