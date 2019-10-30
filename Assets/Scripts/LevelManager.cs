@@ -39,6 +39,7 @@ public class LevelManager : MonoBehaviour
         Time.timeScale = 1;
         mainMenu.SetActive(true);
         levelSelect.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void ExitGame()

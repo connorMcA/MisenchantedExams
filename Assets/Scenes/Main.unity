@@ -6166,7 +6166,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
       - m_Target: {fileID: 596755553}
-        m_MethodName: StartGame
+        m_MethodName: RestartLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -19385,6 +19385,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91cbab4adb74a4b43b718463d3e6e579, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ingredientText: {fileID: 1442300549}
 --- !u!1 &608967901
 GameObject:
   m_ObjectHideFlags: 0
@@ -21111,7 +21112,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 0bf36227ea16afb44a4ea9b0e3d6bc2c, type: 2}
+      objectReference: {fileID: 2100000, guid: ae6e11988b752794dab0e37dd3147b5a, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 654053889b8a5d1439f32c81521d4e54, type: 3}
 --- !u!4 &768947350 stripped
@@ -23418,7 +23419,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 596755553}
-        m_MethodName: StartGame
+        m_MethodName: RestartLevel
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -31584,7 +31585,7 @@ GameObject:
   - component: {fileID: 1442300550}
   - component: {fileID: 1442300549}
   m_Layer: 5
-  m_Name: Text
+  m_Name: AddedIngredientText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -36728,7 +36729,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 347238ce51be917429ab376af5e66cde, type: 2}
+      objectReference: {fileID: 2100000, guid: 46384ed6c1508034dae90883b87dfefd, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 654053889b8a5d1439f32c81521d4e54, type: 3}
 --- !u!1 &1512227500

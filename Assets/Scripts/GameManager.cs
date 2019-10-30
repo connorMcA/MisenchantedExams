@@ -13,6 +13,10 @@ public class GameManager : MonoBehaviour
     GameObject everyLevelObjects;
     Box openBox;
     int levelCount = 3;
+    int lastLevel = 0;
+    Spriggan spriggan;
+
+    public Text ingredientText;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +33,7 @@ public class GameManager : MonoBehaviour
         openBox = GameObject.Find("Open Box").GetComponent<Box>();
 
         everyLevelObjects = GameObject.Find("EveryLevelObjects");
+        spriggan = everyLevelObjects.GetComponentInChildren<Spriggan>();
         everyLevelObjects.SetActive(false);
 
         levels = new GameObject[3];
@@ -53,16 +58,17 @@ public class GameManager : MonoBehaviour
 
     public void StartGame(int levelNumber)
     {
+        lastLevel = levelNumber;
         GameObject.Find("Bubble").GetComponent<ParticleSystem>().Stop();
         cauldron.enabled = true;
         cauldron.ResetCauldron();
+        cauldron.SetBoxes(levels[levelNumber].GetComponentsInChildren<Box>());
         openBox.Reset();
         timer.enabled = true;
         timer.RestartTimer();
         levels[levelNumber].SetActive(true);
         Spell spell = levels[levelNumber].GetComponent<Spell>();
         spell.Reset();
-        spell.ingredients = GetComponentInChildren<Text>();
         cauldron.spell = spell;
         everyLevelObjects.SetActive(true);
         Time.timeScale = 1;
@@ -83,5 +89,12 @@ public class GameManager : MonoBehaviour
     {
         pauseMenu.SetActive(!pauseMenu.activeSelf);
         Time.timeScale = Time.timeScale == 1 ? 0 : 1;
+        spriggan.enabled = !spriggan.enabled;
+        
+    }
+
+    public void RestartLevel()
+    {
+        StartGame(lastLevel);
     }
 }
