@@ -26,7 +26,7 @@ public class Spriggan : MonoBehaviour
 
 
     double delay;
-    double MAX_DELAY = 10;
+    double MAX_DELAY = 25;
 
     int positionIndex;
 
@@ -66,6 +66,7 @@ public class Spriggan : MonoBehaviour
 
     void Reset()
     {
+        MAX_DELAY = UnityEngine.Random.Range(15, 30);
         delay = MAX_DELAY;
         positionIndex = 0;
         currentTransitionTime = 0;
@@ -86,6 +87,6 @@ public class Spriggan : MonoBehaviour
             cauldron.SprigganAttack();
             Reset();
         }
-        
+
     }
 }
