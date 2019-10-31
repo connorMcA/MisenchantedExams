@@ -64,7 +64,7 @@ public class Spriggan : MonoBehaviour
         }
     }
 
-    void Reset()
+    public void Reset()
     {
         MAX_DELAY = UnityEngine.Random.Range(15, 30);
         delay = MAX_DELAY;
