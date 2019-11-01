@@ -55,16 +55,14 @@ public class Cauldron : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
         effects = new List<ParticleSystem> { BUBBLING, STEAMING, SPARKLING, null };
         liquidObject.GetComponent<Renderer>().material.color = liquidColor;
         foreach (Box box in publicBoxes)
         {
             boxes[box.row, box.col] = box;
         }
-
         bubblingSound.Stop();
-        //bubblingSound.Stop();
         steamingSound.Stop();
         sparklingSound.Stop();
     }
