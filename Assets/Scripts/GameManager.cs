@@ -18,6 +18,9 @@ public class GameManager : MonoBehaviour
 
     public Text ingredientText;
 
+    // Canvas object for Game Over screen
+    public GameObject gameOverScreen;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -35,6 +38,9 @@ public class GameManager : MonoBehaviour
         everyLevelObjects = GameObject.Find("EveryLevelObjects");
         spriggan = everyLevelObjects.GetComponentInChildren<Spriggan>();
         everyLevelObjects.SetActive(false);
+
+        gameOverScreen = GameObject.Find("VictoryScreen");
+        gameOverScreen.SetActive(false);
 
         levels = new GameObject[3];
 
@@ -72,6 +78,8 @@ public class GameManager : MonoBehaviour
         cauldron.spell = spell;
         everyLevelObjects.SetActive(true);
         Time.timeScale = 1;
+        spriggan.enabled = true;
+        spriggan.Reset();
     }
 
     public void Stop()
@@ -83,6 +91,12 @@ public class GameManager : MonoBehaviour
             levelObjects.SetActive(false);
         }
         everyLevelObjects.SetActive(false);
+    }
+
+    public void GameOver()
+    {
+        gameOverScreen.SetActive(true);
+        spriggan.enabled = false;
     }
 
     public void TogglePauseMode()

@@ -52,9 +52,6 @@ public class Cauldron : MonoBehaviour
 
     public int fontSize = 20;
 
-    // Canvas object for Game Over screen
-    public GameObject gameOverScreen;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -574,7 +571,7 @@ public class Cauldron : MonoBehaviour
 
     public void GameOver()
     {
-        gameOverScreen.SetActive(true);
+        GameObject.Find("GameManager").GetComponent<GameManager>().GameOver();
     }
 
     public void ResetCauldron() {
